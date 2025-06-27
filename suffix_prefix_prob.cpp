@@ -63,3 +63,30 @@ vector<int> prefix;
  * NumArray* obj = new NumArray(nums);
  * int param_1 = obj->sumRange(left,right);
  */
+// -----------------------------------*****---------------------------------------------------------------------
+// same ques but we use suffix
+class NumArray {
+public:
+vector<int> suffix;
+
+    NumArray(vector<int>& nums) {
+        for(int i=0; i<nums.size(); i++){
+            suffix.push_back(0);
+        }
+        int n = nums.size();
+        suffix[n-1] = nums[n-1];
+        for(int i = n-2; i>=0; i--){
+            suffix[i] = suffix[i+1] + nums[i];
+        }
+    }
+    
+    int sumRange(int left, int right) {
+        return suffix[left] - (right < suffix.size()-1 ? suffix[right + 1]: 0);
+    }
+};
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray* obj = new NumArray(nums);
+ * int param_1 = obj->sumRange(left,right);
+ */
