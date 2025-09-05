@@ -84,3 +84,26 @@ public:
         // return head;
     }
 };
+
+
+---------------------------------------------------same code using recursion----------------
+ class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+        
+        // Recursively process the next node
+        head->next = removeElements(head->next, val);
+        
+        // If current node's value equals val, skip it
+        if (head->val == val) {
+            ListNode* temp = head->next;
+            delete head;  // Free the current node
+            return temp;
+        } else {
+            return head;
+        }
+    }
+};
