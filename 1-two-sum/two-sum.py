@@ -8,5 +8,5 @@ class Solution:
 
             if needed in seen:
                 return [seen[needed], i]
-
-            seen[current] = i
+            else:
+                seen[current] = i
